@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+</head>
+
+<body>
+
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form method="POST" action="guardarUsuario.php" onsubmit="return validateForm('signup')">
+                <h1>Create an Account</h1>
+                <input type="text" placeholder="Name" name="nombre" required>
+                <input type="email" placeholder="Email" name="correo" required>
+                <input type="password" placeholder="Password" name="contrasena" required>
+                <input type="hidden" name="language" value="2">
+                <button>Create an Account</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form method="POST" action="validad_usuario.php" onsubmit="return validateForm('signin')">
+                <h1>Sign-In</h1>
+                <br>
+                <input type="email" placeholder="Email" name="correo" required>
+                <input type="password" placeholder="Password" name="contrasena" required>
+                <input type="hidden" name="language" value="2">
+                <button>Iniciar sesión</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Already have an account?</h1>
+                    <p>Enter your details to Log-in</p>
+                    <button class="hidden" id="login">Log-In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Dont Have an Account?</h1>
+                    <p>Register with your personal data to use all the functions of the site</p>
+                    <button class="hidden" id="register">Create an Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function validateForm(formType) {
+            var nombreInput = document.forms[formType].elements['nombre'];
+            var correoInput = document.forms[formType].elements['correo'];
+            var contrasenaInput = document.forms[formType].elements['contrasena'];
+            var profesionInput = document.forms[formType].elements['profesion'];
+
+            nombreInput.setCustomValidity('Por favor, ingrese su nombre.');
+            correoInput.setCustomValidity('Por favor, ingrese su correo electrónico.');
+            contrasenaInput.setCustomValidity('Por favor, ingrese su contraseña.');
+            profesionInput.setCustomValidity('Por favor, ingrese su profesión.');
+
+            document.forms[formType].addEventListener('submit', function () {
+                nombreInput.setCustomValidity('');
+                correoInput.setCustomValidity('');
+                contrasenaInput.setCustomValidity('');
+                profesionInput.setCustomValidity('');
+            });
+
+            return true; 
+        }
+    </script>
+</body>
+
+</html>
